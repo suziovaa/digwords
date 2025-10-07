@@ -51,10 +51,8 @@ export default function HomePage() {
       </header>
 
       <main>
-        <section className="relative bg-gradient-to-br from-primary via-accent to-secondary text-primary-foreground py-20 md:py-28 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-          <div className="absolute top-10 left-10 text-8xl opacity-5 font-bold">АБВ</div>
-          <div className="absolute bottom-10 right-10 text-8xl opacity-5 font-bold">XYZ</div>
+        <section className="relative bg-gradient-to-br from-primary/80 to-secondary text-primary-foreground py-20 md:py-28 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           <div className="relative max-w-7xl mx-auto px-4 md:px-8 space-y-8">
             <div className="text-center space-y-4">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-2">
