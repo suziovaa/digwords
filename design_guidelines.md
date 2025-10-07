@@ -1,7 +1,7 @@
 # Design Guidelines: Digital Humanities Dictionary
 
-## Design Approach: Material Design System
-**Rationale**: Information-dense academic tool requiring excellent typography, clear hierarchy, and proven patterns for search, filtering, and content display.
+## Design Approach: Modern Language Learning Aesthetic
+**Rationale**: Drawing inspiration from Duolingo and modern linguistic platforms, combining vibrant energy with academic utility. The design balances playful linguistic elements with sophisticated information architecture for scholarly work.
 
 ---
 
@@ -10,135 +10,147 @@
 ### A. Color Palette
 
 **Light Mode:**
-- Primary: 210 85% 45% (Deep academic blue)
-- Background: 0 0% 98% (Off-white for reduced eye strain)
-- Surface: 0 0% 100% (Pure white cards)
-- Text Primary: 220 15% 15%
-- Text Secondary: 220 10% 45%
-- Border: 220 15% 88%
-- Accent: 25 95% 55% (Warm orange for highlights/links)
+- Primary: 250 75% 58% (Vibrant purple - linguistic creativity)
+- Secondary: 160 70% 45% (Fresh teal - multilingual harmony)
+- Background: 0 0% 99% (Bright white)
+- Surface: 0 0% 100%
+- Accent: 35 95% 60% (Energetic coral for CTAs/highlights)
+- Text Primary: 240 15% 15%
+- Text Secondary: 240 10% 50%
+- Border: 240 10% 90%
 
 **Dark Mode:**
-- Primary: 210 75% 65% (Lighter blue)
-- Background: 220 15% 10%
-- Surface: 220 12% 14%
-- Text Primary: 210 15% 92%
-- Text Secondary: 210 10% 70%
-- Border: 220 15% 25%
-- Accent: 25 85% 65%
+- Primary: 250 70% 70%
+- Secondary: 160 65% 55%
+- Background: 240 15% 8%
+- Surface: 240 12% 12%
+- Accent: 35 85% 65%
+- Text Primary: 240 10% 95%
+- Text Secondary: 240 8% 75%
+- Border: 240 15% 20%
 
 ### B. Typography
 
 **Font Stack:**
-- Primary (Cyrillic + Latin): Inter via Google Fonts
-- Monospace (sources/references): JetBrains Mono via Google Fonts
+- Display: Outfit (Google Fonts) - Modern, geometric, friendly
+- Body: Inter (Google Fonts) - Excellent Cyrillic support
+- Monospace: JetBrains Mono - For linguistic notation/sources
 
 **Hierarchy:**
+- Hero title: text-5xl md:text-7xl font-bold tracking-tight
 - Page titles: text-3xl md:text-4xl font-bold
 - Term headings: text-2xl md:text-3xl font-semibold
-- Section labels: text-sm font-medium uppercase tracking-wide
-- Body text: text-base leading-relaxed
+- Section labels: text-xs font-bold uppercase tracking-widest
+- Body: text-base leading-relaxed
 - Definitions: text-lg leading-loose
-- Meta information: text-sm text-secondary
+- Micro-copy: text-sm
 
 ### C. Layout System
 
-**Spacing Primitives**: Use 2, 4, 6, 8, 12, 16 units consistently
-- Component padding: p-4 md:p-6
-- Card spacing: gap-4
-- Section margins: mb-8 md:mb-12
-- Page padding: px-4 md:px-8
-
-**Grid Structure:**
-- Max width: max-w-7xl mx-auto
-- Two-column layout: Filters sidebar (w-80) + Main content (flex-1)
-- Mobile: Stack vertically
+**Spacing Primitives**: Use 4, 6, 8, 12, 16, 24 units
+- Component padding: p-6 md:p-8
+- Card gaps: gap-6
+- Section spacing: py-16 md:py-24
+- Container: max-w-7xl mx-auto px-6 md:px-8
 
 ### D. Component Library
 
 **Navigation:**
-- Fixed header with search bar, alphabet filter, language toggle
-- Sticky filters sidebar (desktop) / collapsible drawer (mobile)
-- Breadcrumbs for navigation context
+- Floating header: backdrop-blur-md bg-white/80 dark:bg-surface/80
+- Search bar with linguistic symbol decorations (🔍, 📚, 🌐)
+- Language toggle: Pill-style animated switcher (RU ⟷ EN)
+- Alphabet navigation: Colorful gradient pills (Cyrillic + Latin)
 
-**Search & Filters:**
-- Prominent search input with Russian keyboard support
-- Alphabet navigation bar (А-Я + A-Z)
-- Section filter chips with multi-select
-- Active filter badges with clear-all option
+**Cards & Content:**
+- Term cards: Rounded-2xl, gradient borders, hover lift effect
+- Section badges: Vibrant colored pills matching primary/secondary palette
+- Definition blocks: Subtle colored background (primary/10)
+- Related terms: Interactive chips with gradient backgrounds
 
-**Content Display:**
-- Dictionary cards with subtle shadows and hover states
-- Term detail view: Stacked layout with clear section dividers
-- Related terms as interactive tags/chips
-- Collapsible example sections
-
-**Data Tables:**
-- Excel upload interface with drag-drop zone
-- Progress indicators for data import
-- Preview table before confirming import
+**Search & Discovery:**
+- Prominent search: Large rounded input with shadow
+- Filter chips: Multi-select with checkmarks, vibrant active states
+- Alphabet strip: Horizontal scroll, gradient-bordered active state
+- Quick stats: Animated number counters with colorful icons
 
 **Interactive Elements:**
-- Icons: Heroicons via CDN
-- Buttons: Solid primary, outline secondary
-- Chips/Tags: Rounded with soft backgrounds
-- Links: Underline on hover, accent color
+- Buttons: Rounded-full, gradient fills for primary actions
+- Icons: Heroicons with vibrant colors
+- Tags: Rounded-lg with soft gradient backgrounds
+- Links: Bold accent color, no underline default
 
 ### E. Page Layouts
 
 **Homepage:**
-- Hero section (h-64): Gradient background (primary to darker shade), centered title "Словарь терминов цифровой гуманитаристики", prominent search bar
-- Quick stats: Total terms, sections count, languages (3-column grid)
-- Featured sections: Grid of section cards with term counts
-- Recent additions: List of 5-6 newest terms
+- Hero (h-96 md:h-[600px]): Full-width image of abstract linguistic patterns (colorful letters, phonetic symbols, multilingual typography in artistic arrangement) with gradient overlay (purple-to-teal 45deg, 60% opacity)
+- Hero content: Centered title with linguistic symbol decorations, large search bar, stat chips below (terms count, sections, languages)
+- Featured sections: 3-column grid with gradient-bordered cards, term counts, colorful icons
+- Recent additions: Horizontal scroll carousel with term cards
+- Newsletter CTA: Gradient background section with playful copy
 
-**Dictionary View:**
-- Left sidebar: Filters (sections, alphabet)
-- Main area: Search results / browsing list (masonry grid of term cards)
-- Each card: Term (bold), section badge, definition preview (2 lines), English equivalent
+**Dictionary Browse:**
+- Sticky header with search + filters
+- Masonry grid layout: Staggered term cards with varied heights
+- Sidebar filters (desktop): Floating card with sections checklist, alphabet grid
+- Mobile: Bottom sheet filters with smooth animations
 
 **Term Detail:**
-- Full-width content area (max-w-4xl)
-- Term header with section badge
-- Definition section (prominent)
-- Usage example (italic, indented, bg-surface)
-- English equivalent (with flag icon)
-- Related terms (interactive chips)
-- Source reference (small text, bottom)
+- Breadcrumb navigation with colorful separators
+- Full-width term header: Gradient background, large title, section badge
+- Two-column layout (desktop): Definition (60%) + Meta info sidebar (40%)
+- Content sections: Definition (highlighted background), Usage (italic with quote marks), English equivalent (flag + text), Related terms (interactive chip grid)
+- Source: Footer card with academic citation styling
 
-### F. Special Features
+**Data Management (Admin):**
+- Excel upload: Gradient-bordered drag-drop zone with linguistic icons
+- Preview table: Zebra striping with colorful header row
+- Progress: Animated gradient progress bars
 
-**Bilingual Support:**
-- Language toggle (RU/EN) in header
-- Cyrillic-first alphabetical sorting
-- RTL-aware spacing (though Russian is LTR)
+### F. Images
 
-**Academic References:**
-- Footnote-style source citations
-- Hover tooltips for quick source preview
-- External link indicators for sources
+**Hero Section:**
+Required - Full-width hero image featuring abstract linguistic artwork: colorful Cyrillic and Latin letterforms, IPA symbols, language family tree diagrams, or typographic compositions. Image should be bright, energetic, and suggest multilingual harmony. Overlay with purple-to-teal gradient at 60% opacity.
 
-**Accessibility:**
-- High contrast in dark mode (WCAG AAA where possible)
-- Keyboard navigation for all interactions
-- ARIA labels for Russian screen readers
-- Focus indicators: 2px accent color ring
+**Section Illustrations:**
+Colorful vector icons for each academic section (computations, analysis, methods, etc.) using the primary/secondary palette
 
-### G. Animations
+**No photography** - Focus on abstract linguistic graphics and typography
 
-**Minimal & Purposeful:**
-- Fade-in for search results: duration-200
-- Slide-in for filter sidebar: duration-300
-- Smooth scroll to term details
-- NO decorative animations, focus on performance
+### G. Special Features
+
+**Linguistic Decorations:**
+- Phonetic symbol watermarks (subtle, 5% opacity)
+- Language script badges (Кириллица/Latin indicators)
+- Translation arrows and linguistic connectors
+- Colorful etymology tree visualizations for related terms
+
+**Bilingual Polish:**
+- Split-view term comparison (RU | EN side-by-side option)
+- Hover translations for quick reference
+- Language detection in search with auto-suggestions
+
+**Micro-interactions:**
+- Card hover: Lift + glow effect (shadow-2xl)
+- Search: Typewriter animation for placeholder text
+- Filter apply: Ripple effect from selection
+- Term card click: Smooth expand-to-detail transition
+
+### H. Accessibility
+
+- WCAG AAA contrast ratios maintained despite vibrant colors
+- Keyboard navigation with visible focus rings (2px accent)
+- Reduced motion respect: Disable animations when requested
+- Screen reader: Russian language support, proper ARIA labels
+- Color-blind safe: Use patterns + colors for distinctions
+
+### I. Animations
+
+**Strategic Use:**
+- Hero: Subtle floating animation on linguistic elements (duration-2000)
+- Cards: Stagger fade-in on load (duration-300, delay-100 increments)
+- Search results: Smooth appear (duration-200)
+- NO excessive animations - maintain academic professionalism
 
 ---
 
-## Images
-
-**Hero Section:**
-- Abstract geometric pattern or subtle texture suggesting digital/humanities intersection
-- Low opacity overlay (20-30%) to ensure text readability
-- Alternatively: Typographic composition with Cyrillic and Latin characters
-
-**No additional images required** - content-focused interface prioritizes text clarity over visual embellishment.
+**Design Personality**: Scholarly meets playful. Vibrant linguistic celebration without sacrificing academic credibility. Every color choice and typographic decision reinforces the multilingual, modern nature of digital humanities.

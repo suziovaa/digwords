@@ -20,7 +20,7 @@ export default function AlphabetNav({
             size="sm"
             variant={selectedLetter === null ? "default" : "ghost"}
             onClick={() => onLetterSelect(null)}
-            className="h-8 min-w-[48px]"
+            className="h-8 min-w-[48px] rounded-full font-semibold"
             data-testid="button-all"
           >
             Все
@@ -31,7 +31,7 @@ export default function AlphabetNav({
               size="sm"
               variant={selectedLetter === letter ? "default" : "ghost"}
               onClick={() => onLetterSelect(letter)}
-              className="h-8 min-w-[32px] px-2"
+              className="h-8 min-w-[32px] px-2 rounded-full font-semibold"
               data-testid={`button-letter-${letter}`}
             >
               {letter}

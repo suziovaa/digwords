@@ -51,14 +51,20 @@ export default function HomePage() {
       </header>
 
       <main>
-        <section className="relative bg-gradient-to-br from-primary to-primary/80 text-primary-foreground py-16 md:py-24">
-          <div className="absolute inset-0 bg-black/20" />
-          <div className="relative max-w-7xl mx-auto px-4 md:px-8 space-y-6">
-            <div className="text-center space-y-3">
-              <h1 className="text-3xl md:text-4xl font-bold">
+        <section className="relative bg-gradient-to-br from-primary via-accent to-secondary text-primary-foreground py-20 md:py-28 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+          <div className="absolute top-10 left-10 text-8xl opacity-5 font-bold">АБВ</div>
+          <div className="absolute bottom-10 right-10 text-8xl opacity-5 font-bold">XYZ</div>
+          <div className="relative max-w-7xl mx-auto px-4 md:px-8 space-y-8">
+            <div className="text-center space-y-4">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-2">
+                <span>🌐</span>
+                <span>RU · EN</span>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                 Словарь терминов цифровой гуманитаристики
               </h1>
-              <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto">
+              <p className="text-xl text-primary-foreground/95 max-w-2xl mx-auto font-medium">
                 Онлайн-словарь с определениями на русском и английском языках
               </p>
             </div>
@@ -69,10 +75,11 @@ export default function HomePage() {
                   onChange={setSearchValue}
                   placeholder="Поиск терминов..."
                 />
-                <div className="mt-4 flex justify-center gap-3">
+                <div className="mt-6 flex justify-center gap-3">
                   <Button
                     onClick={handleSearch}
-                    className="bg-background text-foreground hover:bg-background/90"
+                    size="lg"
+                    className="bg-white text-primary hover:bg-white/90 font-semibold rounded-full px-8"
                     data-testid="button-search"
                   >
                     Искать
@@ -80,7 +87,8 @@ export default function HomePage() {
                   <Link href="/dictionary">
                     <Button
                       variant="outline"
-                      className="bg-background/10 border-primary-foreground/30 text-primary-foreground hover:bg-background/20"
+                      size="lg"
+                      className="bg-white/10 border-white/40 text-white hover:bg-white/20 backdrop-blur-sm rounded-full px-8"
                       data-testid="button-browse"
                     >
                       Просмотреть все
@@ -137,15 +145,17 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-muted py-12">
-          <div className="max-w-7xl mx-auto px-4 md:px-8 text-center space-y-4">
-            <Upload className="h-12 w-12 text-primary mx-auto" />
-            <h2 className="text-2xl font-semibold">Загрузите свой словарь</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+        <section className="bg-gradient-to-r from-secondary/10 via-accent/10 to-primary/10 py-16 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 text-center space-y-6">
+            <div className="inline-flex p-4 bg-primary/10 rounded-2xl">
+              <Upload className="h-12 w-12 text-primary" />
+            </div>
+            <h2 className="text-3xl font-bold">Загрузите свой словарь</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Импортируйте термины из Excel-файла для быстрого наполнения словаря
             </p>
             <Link href="/dictionary">
-              <Button data-testid="button-upload">
+              <Button size="lg" className="rounded-full px-8" data-testid="button-upload">
                 Перейти к загрузке
               </Button>
             </Link>

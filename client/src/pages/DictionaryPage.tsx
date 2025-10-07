@@ -116,8 +116,9 @@ export default function DictionaryPage() {
             </Link>
             <div className="flex items-center gap-2">
               <Button
-                variant="outline"
+                variant="default"
                 size="sm"
+                className="rounded-full"
                 data-testid="button-upload-file"
               >
                 <Upload className="h-4 w-4 mr-2" />
