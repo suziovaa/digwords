@@ -3,16 +3,20 @@ import { pgTable, text, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
+export const terms = pgTable("terms", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+  section: text("section").notNull(),
+  term: text("term").notNull(),
+  definition: text("definition").notNull(),
+  usageExample: text("usage_example"),
+  englishEquivalent: text("english_equivalent"),
+  relatedTerms: text("related_terms").array(),
+  source: text("source"),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
+export const insertTermSchema = createInsertSchema(terms).omit({
+  id: true,
 });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export type InsertTerm = z.infer<typeof insertTermSchema>;
+export type Term = typeof terms.$inferSelect;

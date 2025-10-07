@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import SearchBar from "@/components/SearchBar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Upload, Moon, Sun } from "lucide-react";
+import { BookOpen, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 
 const MOCK_SECTIONS = [
@@ -143,22 +143,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="bg-gradient-to-r from-secondary/10 via-accent/10 to-primary/10 py-16 md:py-20">
-          <div className="max-w-7xl mx-auto px-4 md:px-8 text-center space-y-6">
-            <div className="inline-flex p-4 bg-primary/10 rounded-2xl">
-              <Upload className="h-12 w-12 text-primary" />
-            </div>
-            <h2 className="text-3xl font-bold">Загрузите свой словарь</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Импортируйте термины из Excel-файла для быстрого наполнения словаря
-            </p>
-            <Link href="/dictionary">
-              <Button size="lg" className="rounded-full px-8" data-testid="button-upload">
-                Перейти к загрузке
-              </Button>
-            </Link>
-          </div>
-        </section>
       </main>
     </div>
   );

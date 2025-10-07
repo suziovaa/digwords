@@ -5,7 +5,7 @@ import AlphabetNav from "@/components/AlphabetNav";
 import FilterSidebar from "@/components/FilterSidebar";
 import TermCard from "@/components/TermCard";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Upload, Moon, Sun, Menu } from "lucide-react";
+import { BookOpen, Moon, Sun, Menu } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import {
   Sheet,
@@ -115,15 +115,6 @@ export default function DictionaryPage() {
               </div>
             </Link>
             <div className="flex items-center gap-2">
-              <Button
-                variant="default"
-                size="sm"
-                className="rounded-full"
-                data-testid="button-upload-file"
-              >
-                <Upload className="h-4 w-4 mr-2" />
-                Загрузить Excel
-              </Button>
               <Button
                 variant="ghost"
                 size="icon"
