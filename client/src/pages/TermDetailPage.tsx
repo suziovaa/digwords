@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, ArrowLeft, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { type Term } from "@shared/schema";
+import { motion } from "framer-motion";
 
 export default function TermDetailPage() {
   const params = useParams();
@@ -24,7 +25,13 @@ export default function TermDetailPage() {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
+      className="min-h-screen bg-background"
+    >
       <header className="border-b bg-card">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between gap-4">
           <Link href="/">
@@ -85,6 +92,6 @@ export default function TermDetailPage() {
           />
         )}
       </main>
-    </div>
+    </motion.div>
   );
 }

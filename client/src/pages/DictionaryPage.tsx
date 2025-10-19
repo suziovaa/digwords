@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, Moon, Sun, Menu } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { type Term } from "@shared/schema";
+import { motion } from "framer-motion";
 import {
   Sheet,
   SheetContent,
@@ -62,7 +63,13 @@ export default function DictionaryPage() {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="min-h-screen bg-background"
+    >
       {/* Desktop Layout */}
       <div className="hidden lg:flex h-screen">
         {/* Sidebar */}
@@ -143,8 +150,15 @@ export default function DictionaryPage() {
                 </div>
               ) : (
                 <div className="grid gap-4 md:grid-cols-2">
-                  {filteredTerms.map((term) => (
-                    <TermCard key={term.id} term={term} />
+                  {filteredTerms.map((term, index) => (
+                    <motion.div
+                      key={term.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: Math.min(index * 0.05, 0.5) }}
+                    >
+                      <TermCard term={term} />
+                    </motion.div>
                   ))}
                 </div>
               )}
@@ -244,13 +258,20 @@ export default function DictionaryPage() {
             </div>
           ) : (
             <div className="grid gap-4">
-              {filteredTerms.map((term) => (
-                <TermCard key={term.id} term={term} />
+              {filteredTerms.map((term, index) => (
+                <motion.div
+                  key={term.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: Math.min(index * 0.05, 0.5) }}
+                >
+                  <TermCard term={term} />
+                </motion.div>
               ))}
             </div>
           )}
         </main>
       </div>
-    </div>
+    </motion.div>
   );
 }
