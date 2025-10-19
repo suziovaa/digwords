@@ -1,5 +1,6 @@
-import { type Term, type InsertTerm } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type Term, type InsertTerm, terms } from "@shared/schema";
+import { db } from "./db";
+import { eq, ilike, or } from "drizzle-orm";
 
 export interface IStorage {
   // Terms
@@ -12,66 +13,48 @@ export interface IStorage {
   deleteAllTerms(): Promise<void>;
 }
 
-export class MemStorage implements IStorage {
-  private terms: Map<string, Term>;
-
-  constructor() {
-    this.terms = new Map();
-  }
-
+export class DatabaseStorage implements IStorage {
   async getAllTerms(): Promise<Term[]> {
-    return Array.from(this.terms.values());
+    return await db.select().from(terms);
   }
 
   async getTermById(id: string): Promise<Term | undefined> {
-    return this.terms.get(id);
+    const [term] = await db.select().from(terms).where(eq(terms.id, id));
+    return term || undefined;
   }
 
   async getTermsBySection(section: string): Promise<Term[]> {
-    return Array.from(this.terms.values()).filter(
-      (term) => term.section === section
-    );
+    return await db.select().from(terms).where(eq(terms.section, section));
   }
 
   async searchTerms(query: string): Promise<Term[]> {
-    const lowerQuery = query.toLowerCase();
-    return Array.from(this.terms.values()).filter(
-      (term) =>
-        term.term.toLowerCase().includes(lowerQuery) ||
-        term.definition.toLowerCase().includes(lowerQuery) ||
-        term.englishEquivalent?.toLowerCase().includes(lowerQuery) ||
-        term.usageExample?.toLowerCase().includes(lowerQuery)
-    );
+    const pattern = `%${query}%`;
+    return await db
+      .select()
+      .from(terms)
+      .where(
+        or(
+          ilike(terms.term, pattern),
+          ilike(terms.definition, pattern),
+          ilike(terms.englishEquivalent, pattern),
+          ilike(terms.usageExample, pattern)
+        )
+      );
   }
 
   async createTerm(insertTerm: InsertTerm): Promise<Term> {
-    const id = randomUUID();
-    const term: Term = {
-      id,
-      section: insertTerm.section,
-      term: insertTerm.term,
-      definition: insertTerm.definition,
-      usageExample: insertTerm.usageExample ?? null,
-      englishEquivalent: insertTerm.englishEquivalent ?? null,
-      relatedTerms: insertTerm.relatedTerms ?? null,
-      source: insertTerm.source ?? null,
-    };
-    this.terms.set(id, term);
+    const [term] = await db.insert(terms).values(insertTerm).returning();
     return term;
   }
 
   async createTerms(insertTerms: InsertTerm[]): Promise<Term[]> {
-    const createdTerms: Term[] = [];
-    for (const insertTerm of insertTerms) {
-      const term = await this.createTerm(insertTerm);
-      createdTerms.push(term);
-    }
-    return createdTerms;
+    if (insertTerms.length === 0) return [];
+    return await db.insert(terms).values(insertTerms).returning();
   }
 
   async deleteAllTerms(): Promise<void> {
-    this.terms.clear();
+    await db.delete(terms);
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
