@@ -13,6 +13,13 @@ export default function TermDetailPage() {
 
   const { data: term, isLoading } = useQuery<Term>({
     queryKey: ["/api/terms", termId],
+    queryFn: async () => {
+      const response = await fetch(`/api/terms/${termId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch term");
+      }
+      return response.json();
+    },
     enabled: !!termId,
   });
 
