@@ -2,6 +2,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import SectionBadge from "./SectionBadge";
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
+import { type Term } from "@shared/schema";
+import { ArrowRight } from "lucide-react";
 
 interface TermDetailProps {
   term: string;
@@ -22,6 +25,17 @@ export default function TermDetail({
   relatedTerms,
   source,
 }: TermDetailProps) {
+  // Fetch all terms to find related term IDs
+  const { data: allTerms = [] } = useQuery<Term[]>({
+    queryKey: ["/api/terms"],
+  });
+
+  // Map related term names to their IDs
+  const relatedTermsWithIds = relatedTerms?.map((relatedTermName) => {
+    const foundTerm = allTerms.find((t) => t.term === relatedTermName);
+    return { name: relatedTermName, id: foundTerm?.id };
+  });
+
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <div className="space-y-3">
@@ -70,7 +84,7 @@ export default function TermDetail({
         </Card>
       )}
 
-      {relatedTerms && relatedTerms.length > 0 && (
+      {relatedTermsWithIds && relatedTermsWithIds.length > 0 && (
         <Card>
           <CardHeader>
             <h2 className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
@@ -79,16 +93,29 @@ export default function TermDetail({
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
-              {relatedTerms.map((relatedTerm, index) => (
-                <Link key={index} href={`/search?q=${encodeURIComponent(relatedTerm)}`}>
-                  <Badge
-                    variant="outline"
-                    className="hover-elevate active-elevate-2 cursor-pointer"
-                    data-testid={`badge-related-${index}`}
-                  >
-                    {relatedTerm}
-                  </Badge>
-                </Link>
+              {relatedTermsWithIds.map((relatedTerm, index) => (
+                relatedTerm.id ? (
+                  <Link key={index} href={`/term/${relatedTerm.id}`}>
+                    <Badge
+                      variant="outline"
+                      className="hover-elevate active-elevate-2 cursor-pointer group"
+                      data-testid={`badge-related-${index}`}
+                    >
+                      {relatedTerm.name}
+                      <ArrowRight className="h-3 w-3 ml-1 inline-block opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Badge>
+                  </Link>
+                ) : (
+                  <Link key={index} href={`/dictionary?q=${encodeURIComponent(relatedTerm.name)}`}>
+                    <Badge
+                      variant="outline"
+                      className="hover-elevate active-elevate-2 cursor-pointer opacity-70"
+                      data-testid={`badge-related-${index}`}
+                    >
+                      {relatedTerm.name}
+                    </Badge>
+                  </Link>
+                )
               ))}
             </div>
           </CardContent>
