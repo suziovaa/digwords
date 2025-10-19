@@ -12,9 +12,13 @@ export default function TermCard({ term }: TermCardProps) {
   return (
     <Link href={`/term/${id}`}>
       <Card className="hover-elevate active-elevate-2 cursor-pointer" data-testid={`card-term-${id}`}>
-        <CardHeader className="flex flex-row items-center justify-between gap-2 space-y-0 pb-3">
-          <h3 className="text-xl font-semibold text-foreground">{termName}</h3>
-          <SectionBadge section={section} />
+        <CardHeader className="space-y-0 pb-3">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="text-xl font-semibold text-foreground flex-1 min-w-0">{termName}</h3>
+            <div className="flex-shrink-0">
+              <SectionBadge section={section} />
+            </div>
+          </div>
         </CardHeader>
         <CardContent className="space-y-2">
           <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">

@@ -17,7 +17,7 @@ export default function SectionBadge({ section }: SectionBadgeProps) {
   const colorClass = SECTION_COLORS[section] || "bg-muted text-muted-foreground";
   
   return (
-    <Badge variant="outline" className={`text-xs font-semibold ${colorClass}`}>
+    <Badge variant="outline" className={`text-xs font-semibold whitespace-nowrap ${colorClass}`}>
       {section}
     </Badge>
   );
