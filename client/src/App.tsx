@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import HomePage from "@/pages/HomePage";
 import DictionaryPage from "@/pages/DictionaryPage";
 import TermDetailPage from "@/pages/TermDetailPage";
+import AdminPage from "@/pages/AdminPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -15,6 +16,7 @@ function Router() {
       <Route path="/" component={HomePage} />
       <Route path="/dictionary" component={DictionaryPage} />
       <Route path="/term/:id" component={TermDetailPage} />
+      <Route path="/admin" component={AdminPage} />
       <Route component={NotFound} />
     </Switch>
   );
