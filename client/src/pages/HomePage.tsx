@@ -1,7 +1,6 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import SearchBar from "@/components/SearchBar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Moon, Sun, Sparkles, Shuffle } from "lucide-react";
@@ -11,7 +10,6 @@ import { useCountUp } from "@/hooks/useCountUp";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
-  const [searchValue, setSearchValue] = useState("");
   const { theme, toggleTheme } = useTheme();
   const [, setLocation] = useLocation();
 
@@ -44,14 +42,6 @@ export default function HomePage() {
     if (terms.length > 0) {
       const randomIndex = Math.floor(Math.random() * terms.length);
       setLocation(`/term/${terms[randomIndex].id}`);
-    }
-  };
-
-  const handleSearch = () => {
-    if (searchValue.trim()) {
-      window.location.href = `/dictionary?q=${encodeURIComponent(searchValue)}`;
-    } else {
-      window.location.href = "/dictionary";
     }
   };
 
@@ -96,28 +86,14 @@ export default function HomePage() {
             </div>
             <div className="flex justify-center">
               <div className="w-full max-w-2xl">
-                <SearchBar
-                  value={searchValue}
-                  onChange={setSearchValue}
-                  placeholder="Поиск терминов..."
-                />
-                <div className="mt-6 flex justify-center gap-3 flex-wrap">
-                  <Button
-                    onClick={handleSearch}
-                    size="lg"
-                    className="bg-white text-primary hover:bg-white/90 font-semibold rounded-full px-8"
-                    data-testid="button-search"
-                  >
-                    Искать
-                  </Button>
+                <div className="flex justify-center gap-3 flex-wrap">
                   <Link href="/dictionary">
                     <Button
-                      variant="outline"
                       size="lg"
-                      className="bg-white/10 border-white/40 text-white hover:bg-white/20 backdrop-blur-sm rounded-full px-8"
+                      className="bg-white text-primary hover:bg-white/90 font-semibold rounded-full px-8"
                       data-testid="button-browse"
                     >
-                      Просмотреть все
+                      Просмотреть все термины
                     </Button>
                   </Link>
                   {terms.length > 0 && (
