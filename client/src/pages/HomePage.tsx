@@ -102,9 +102,12 @@ export default function HomePage() {
       <motion.header
         initial={{ y: 0, opacity: 1 }}
         animate={{ y: 0, opacity: 1 }}
-        className={`sticky top-0 z-50 backdrop-blur-2xl border-b border-border/20 transition-colors duration-300 ${
-          isScrolled ? "bg-background/80" : "bg-transparent"
-        }`}
+        style={{
+          backgroundColor: isScrolled 
+            ? "rgba(8, 145, 178, 0.7)" 
+            : "transparent"
+        }}
+        className="sticky top-0 z-50 backdrop-blur-2xl border-b border-cyan-500/20 transition-all duration-300"
       >
         <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
           <motion.div
