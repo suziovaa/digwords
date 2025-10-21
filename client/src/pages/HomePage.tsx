@@ -83,28 +83,64 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Floating Teal Header with Sparkles */}
+      {/* Magical Teal Header with Intense Sparkles */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="sticky top-0 z-50 backdrop-blur-2xl bg-gradient-to-r from-cyan-500/10 via-teal-500/10 to-cyan-500/10 border-b border-cyan-500/20"
+        className="sticky top-0 z-50 backdrop-blur-2xl bg-gradient-to-r from-cyan-500/20 via-teal-500/25 to-cyan-500/20 border-b border-teal-400/40 shadow-lg shadow-cyan-500/20"
       >
-        {/* Sparkling floating elements */}
+        {/* Animated teal glow wave */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-teal-400/10 to-transparent"
+          animate={{
+            x: ["-100%", "100%"],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Intense sparkling floating elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-cyan-400/40 rounded-full"
+              className="absolute w-1 h-1 bg-cyan-300/60 rounded-full shadow-lg shadow-cyan-400/50"
+              animate={{
+                x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                scale: [0, 2, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 2,
+                repeat: Infinity,
+                delay: i * 0.2,
+                ease: "easeInOut",
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+          {/* Larger magical particles */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`large-${i}`}
+              className="absolute w-2 h-2 bg-teal-300/50 rounded-full blur-[1px]"
               animate={{
                 x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
                 y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
                 scale: [0, 1.5, 0],
-                opacity: [0, 1, 0],
+                opacity: [0, 0.8, 0],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 4 + Math.random() * 2,
                 repeat: Infinity,
-                delay: i * 0.4,
+                delay: i * 0.5,
                 ease: "easeInOut",
               }}
               style={{
