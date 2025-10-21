@@ -81,23 +81,6 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Simple Teal Header */}
-      <header className="sticky top-0 z-50 bg-gradient-to-r from-cyan-700 to-teal-700 backdrop-blur-2xl border-b border-cyan-500/20">
-        <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
-          <motion.div
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.02 }}
-          >
-            <div className="relative">
-              <BookOpen className="h-5 w-5 text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.8)]" />
-            </div>
-            <span className="text-base font-semibold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.6)]">
-              DH Dictionary
-            </span>
-          </motion.div>
-        </div>
-      </header>
-
       <main className="relative bg-white">
         {/* Hero Section with Magical Teal Ocean */}
         <section className="relative py-32 md:py-40 overflow-visible">
@@ -193,10 +176,23 @@ export default function HomePage() {
           </div>
           
           <div className="relative max-w-5xl mx-auto px-6 md:px-12 text-center">
+            {/* Logo at top of hero */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center gap-3 mb-12"
+            >
+              <BookOpen className="h-6 w-6 text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.8)]" />
+              <span className="text-xl font-semibold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.6)]">
+                DH Dictionary
+              </span>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
             >
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-cyan-200 via-teal-100 to-blue-200 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(6,182,212,0.3)] leading-tight pb-2">
                 Словарь цифровых
