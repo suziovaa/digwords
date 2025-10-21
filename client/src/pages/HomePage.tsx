@@ -116,10 +116,36 @@ export default function HomePage() {
       </motion.header>
 
       <main className="relative">
-        {/* Minimal Hero Section */}
+        {/* Hero Section with Digital Ocean */}
         <section className="relative py-32 md:py-40 overflow-hidden">
-          {/* Clean gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-transparent to-transparent" />
+          {/* Deep turquoise-blue digital ocean background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-teal-900/30 to-blue-950/40 dark:from-cyan-950/60 dark:via-teal-900/50 dark:to-blue-950/60" />
+          
+          {/* Subtle animated grid */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.08]">
+            <defs>
+              <pattern id="minimalist-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-cyan-400"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#minimalist-grid)" />
+          </svg>
+
+          {/* Subtle glow */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              background: "radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 60%)",
+            }}
+            animate={{
+              opacity: [0.5, 0.8, 0.5],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
           
           <div className="relative max-w-5xl mx-auto px-6 md:px-12 text-center">
             <motion.div
@@ -127,7 +153,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-cyan-400 via-teal-400 to-blue-500 dark:from-cyan-300 dark:via-teal-300 dark:to-blue-400 bg-clip-text text-transparent">
                 Словарь цифровых
                 <br />
                 гуманитарных наук
