@@ -212,15 +212,24 @@
 
   body {
     @apply font-sans antialiased text-foreground;
-    background: linear-gradient(to bottom, 
-      hsl(var(--background)) 0%, 
-      hsl(var(--background)) 100%
+    background: hsl(var(--background));
+  }
+  
+  /* Teal ocean background for homepage */
+  body.homepage {
+    background: linear-gradient(to bottom right, 
+      rgba(8, 145, 178, 0.6), 
+      rgba(20, 184, 166, 0.7), 
+      rgba(30, 64, 175, 0.6)
     );
   }
   
-  /* Allow transparent backgrounds to show the body gradient */
-  body.homepage {
-    background: hsl(var(--background));
+  body.homepage.dark {
+    background: linear-gradient(to bottom right, 
+      rgba(8, 145, 178, 0.8), 
+      rgba(20, 184, 166, 0.9), 
+      rgba(30, 64, 175, 0.8)
+    );
   }
 }
 
