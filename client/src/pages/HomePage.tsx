@@ -327,7 +327,7 @@ export default function HomePage() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button
                     size="lg"
-                    className="bg-white text-primary hover:bg-white/90 font-semibold rounded-full px-8 shadow-2xl"
+                    className="bg-gradient-to-r from-cyan-100 to-slate-200 text-slate-700 hover:from-cyan-200 hover:to-slate-300 font-semibold rounded-full px-8 shadow-2xl border border-cyan-200/50"
                     data-testid="button-browse"
                   >
                     <BookOpen className="w-5 h-5 mr-2" />
@@ -359,9 +359,9 @@ export default function HomePage() {
         <section className="relative max-w-7xl mx-auto px-4 md:px-8 -mt-16 mb-12 z-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: BookOpen, value: animatedTermCount, label: "Всего терминов", color: "from-cyan-500 to-cyan-600", testId: "text-total-terms" },
+              { icon: BookOpen, value: animatedTermCount, label: "Всего терминов", color: "from-teal-500 to-teal-600", testId: "text-total-terms" },
               { icon: TrendingUp, value: animatedSectionCount, label: "Разделов", color: "from-teal-500 to-teal-600", testId: "text-total-sections" },
-              { icon: Globe, value: 2, label: "Языка", color: "from-blue-500 to-blue-600", testId: "text-total-languages" },
+              { icon: Globe, value: 2, label: "Языка", color: "from-teal-500 to-teal-600", testId: "text-total-languages" },
             ].map((stat, i) => (
               <motion.div
                 key={i}
