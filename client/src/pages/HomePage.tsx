@@ -178,29 +178,26 @@ export default function HomePage() {
       </motion.header>
 
       <main className="relative">
-        {/* Hero Section with Digital Ocean */}
+        {/* Hero Section with Magical Teal Ocean */}
         <section className="relative py-32 md:py-40 overflow-hidden">
-          {/* Deep turquoise-blue digital ocean background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-teal-900/30 to-blue-950/40 dark:from-cyan-950/60 dark:via-teal-900/50 dark:to-blue-950/60" />
+          {/* Rich teal-cyan digital ocean background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/60 via-teal-800/70 to-blue-900/60 dark:from-cyan-900/80 dark:via-teal-800/90 dark:to-blue-900/80" />
           
-          {/* Subtle animated grid */}
-          <svg className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.08]">
+          {/* Animated grid with more visibility */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.08] dark:opacity-[0.15]">
             <defs>
               <pattern id="minimalist-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-cyan-400"/>
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-cyan-300"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#minimalist-grid)" />
           </svg>
 
-          {/* Subtle glow */}
+          {/* Animated teal waves */}
           <motion.div
-            className="absolute inset-0"
-            style={{
-              background: "radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 60%)",
-            }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-teal-400/15 to-transparent"
             animate={{
-              opacity: [0.5, 0.8, 0.5],
+              x: ["-100%", "100%"],
             }}
             transition={{
               duration: 8,
@@ -208,6 +205,71 @@ export default function HomePage() {
               ease: "easeInOut",
             }}
           />
+
+          {/* Stronger glowing orb */}
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              background: "radial-gradient(circle at 50% 40%, rgba(20, 184, 166, 0.25) 0%, transparent 60%)",
+            }}
+            animate={{
+              opacity: [0.6, 1, 0.6],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+
+          {/* Magical floating sparkles */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(30)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-cyan-200/50 rounded-full shadow-lg shadow-cyan-400/60"
+                animate={{
+                  x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                  y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                  scale: [0, 2, 0],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: i * 0.15,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+            {/* Larger magical teal particles */}
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={`large-${i}`}
+                className="absolute w-3 h-3 bg-teal-300/40 rounded-full blur-[2px]"
+                animate={{
+                  x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                  y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                  scale: [0, 1.8, 0],
+                  opacity: [0, 0.7, 0],
+                }}
+                transition={{
+                  duration: 5 + Math.random() * 3,
+                  repeat: Infinity,
+                  delay: i * 0.4,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+              />
+            ))}
+          </div>
           
           <div className="relative max-w-5xl mx-auto px-6 md:px-12 text-center">
             <motion.div
