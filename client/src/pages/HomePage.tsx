@@ -236,11 +236,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Smooth Gradient Transition Zone - Extended for smoother flow */}
-        <div className="relative h-64 bg-gradient-to-b from-cyan-900/60 via-teal-700/35 via-teal-600/20 via-teal-500/10 to-white" />
+        {/* Smooth Gradient Transition Zone - Ultra smooth multi-stop gradient */}
+        <div 
+          className="relative h-80"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(8, 145, 178, 0.6) 0%, rgba(13, 148, 136, 0.5) 15%, rgba(20, 184, 166, 0.4) 30%, rgba(20, 184, 166, 0.25) 45%, rgba(20, 184, 166, 0.15) 60%, rgba(20, 184, 166, 0.08) 75%, rgba(255, 255, 255, 0.5) 85%, rgba(255, 255, 255, 1) 100%)'
+          }}
+        />
 
         {/* Floating Stats Cards */}
-        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-40 mb-24 z-20">
+        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-48 mb-24 z-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { icon: BookOpen, value: animatedTermCount, label: "Терминов", testId: "text-total-terms" },
