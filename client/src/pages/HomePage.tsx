@@ -10,20 +10,10 @@ import { motion } from "framer-motion";
 
 export default function HomePage() {
   const [, setLocation] = useLocation();
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const { data: terms = [] } = useQuery<Term[]>({
     queryKey: ["/api/terms"],
   });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Change header style after scrolling past hero section (roughly 500px)
-      setIsScrolled(window.scrollY > 400);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const sections = Array.from(
     terms.reduce((acc, term) => {
@@ -91,47 +81,26 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Clean Glassmorphic Header */}
-      <motion.header
-        initial={{ y: 0, opacity: 1 }}
-        animate={{ y: 0, opacity: 1 }}
-        style={{
-          backgroundColor: isScrolled 
-            ? "rgba(8, 145, 178, 0.7)" 
-            : "transparent"
-        }}
-        className="sticky top-0 z-50 backdrop-blur-2xl border-b border-cyan-500/20 transition-all duration-300"
-      >
+      {/* Simple Teal Header */}
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-cyan-700 to-teal-700 backdrop-blur-2xl border-b border-cyan-500/20">
         <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
           <motion.div
             className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
           >
             <div className="relative">
-              <BookOpen 
-                className={`h-5 w-5 transition-all duration-300 ${
-                  isScrolled 
-                    ? "text-primary" 
-                    : "text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.8)]"
-                }`} 
-              />
+              <BookOpen className="h-5 w-5 text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.8)]" />
             </div>
-            <span 
-              className={`text-base font-semibold tracking-tight transition-all duration-300 ${
-                isScrolled 
-                  ? "bg-gradient-to-r from-cyan-600 to-teal-600 dark:from-cyan-400 dark:to-teal-400 bg-clip-text text-transparent" 
-                  : "text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.6)]"
-              }`}
-            >
+            <span className="text-base font-semibold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.6)]">
               DH Dictionary
             </span>
           </motion.div>
         </div>
-      </motion.header>
+      </header>
 
-      <main className="relative">
+      <main className="relative bg-white">
         {/* Hero Section with Magical Teal Ocean */}
-        <section className="relative py-32 md:py-40 overflow-hidden">
+        <section className="relative py-32 md:py-40 overflow-visible">
           {/* Rich teal-cyan digital ocean background */}
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/60 via-teal-800/70 to-blue-900/60 dark:from-cyan-900/80 dark:via-teal-800/90 dark:to-blue-900/80" />
           
@@ -269,13 +238,13 @@ export default function HomePage() {
               )}
             </motion.div>
           </div>
-
-          {/* Gradient transition to white */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-white pointer-events-none" />
         </section>
 
+        {/* Smooth Gradient Transition Zone */}
+        <div className="relative h-32 bg-gradient-to-b from-cyan-900/60 via-teal-800/40 to-white -mt-1" />
+
         {/* Floating Stats Cards */}
-        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-8 mb-24 bg-white pt-16 z-20">
+        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-24 mb-24 z-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { icon: BookOpen, value: animatedTermCount, label: "Терминов", testId: "text-total-terms" },
@@ -307,7 +276,7 @@ export default function HomePage() {
 
         {/* Featured Term - Floating Card */}
         {featuredTerm && (
-          <section className="max-w-4xl mx-auto px-6 md:px-12 mb-24 bg-white">
+          <section className="max-w-4xl mx-auto px-6 md:px-12 mb-24">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -346,7 +315,7 @@ export default function HomePage() {
 
         {/* Clean Sections Grid */}
         {sections.length > 0 && (
-          <section className="max-w-6xl mx-auto px-6 md:px-12 pb-32 bg-white">
+          <section className="max-w-6xl mx-auto px-6 md:px-12 pb-32">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
