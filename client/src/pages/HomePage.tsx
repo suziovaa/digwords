@@ -237,7 +237,7 @@ export default function HomePage() {
         </section>
 
         {/* Smooth Gradient Transition Zone */}
-        <div className="relative h-32 bg-gradient-to-b from-cyan-900/60 via-teal-800/40 to-white -mt-1" />
+        <div className="relative h-32 bg-gradient-to-b from-cyan-900/60 via-teal-800/40 to-white" />
 
         {/* Floating Stats Cards */}
         <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-24 mb-24 z-20">
