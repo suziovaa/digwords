@@ -53,8 +53,15 @@ export default function HomePage() {
     }
   };
 
+  useEffect(() => {
+    document.body.classList.add('homepage');
+    return () => {
+      document.body.classList.remove('homepage');
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       {/* Subtle Ambient Orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <motion.div
@@ -241,7 +248,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-cyan-200 via-teal-100 to-blue-200 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(6,182,212,0.3)]">
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-cyan-200 via-teal-100 to-blue-200 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(6,182,212,0.3)] leading-tight pb-2">
                 Словарь цифровых
                 <br />
                 гуманитарных наук
