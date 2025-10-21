@@ -153,12 +153,12 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-cyan-400 via-teal-400 to-blue-500 dark:from-cyan-300 dark:via-teal-300 dark:to-blue-400 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-cyan-200 via-teal-100 to-blue-200 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(6,182,212,0.3)]">
                 Словарь цифровых
                 <br />
                 гуманитарных наук
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+              <p className="text-lg md:text-xl text-cyan-50/90 max-w-2xl mx-auto mb-12 leading-relaxed">
                 Двуязычный справочник терминов, методов и технологий для исследователей в области digital humanities
               </p>
             </motion.div>
