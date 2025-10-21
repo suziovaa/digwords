@@ -3,16 +3,15 @@ import { Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Moon, Sun, Sparkles, Shuffle, TrendingUp, Globe, Zap } from "lucide-react";
+import { BookOpen, Moon, Sun, Sparkles, Shuffle, TrendingUp, Globe, ArrowRight } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
 import { type Term } from "@shared/schema";
 import { useCountUp } from "@/hooks/useCountUp";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   const { theme, toggleTheme } = useTheme();
   const [, setLocation] = useLocation();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const { data: terms = [] } = useQuery<Term[]>({
     queryKey: ["/api/terms"],
@@ -44,41 +43,16 @@ export default function HomePage() {
     }
   };
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background overflow-hidden">
-      {/* Animated Background Orbs - Clean & Transparent */}
+    <div className="min-h-screen bg-background">
+      {/* Subtle Ambient Orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-br from-cyan-400/8 to-teal-400/8 blur-3xl"
+          className="absolute w-[600px] h-[600px] rounded-full bg-gradient-to-br from-cyan-400/5 to-teal-400/5 blur-3xl"
           animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            top: "10%",
-            left: "10%",
-          }}
-        />
-        <motion.div
-          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-br from-blue-400/6 to-cyan-400/6 blur-3xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 80, 0],
-            scale: [1, 1.3, 1],
+            x: [0, 80, 0],
+            y: [0, 40, 0],
+            scale: [1, 1.1, 1],
           }}
           transition={{
             duration: 25,
@@ -86,57 +60,43 @@ export default function HomePage() {
             ease: "easeInOut",
           }}
           style={{
-            bottom: "10%",
-            right: "10%",
+            top: "5%",
+            left: "5%",
           }}
         />
         <motion.div
-          className="absolute w-[300px] h-[300px] rounded-full bg-gradient-to-br from-teal-400/7 to-blue-400/7 blur-3xl"
+          className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-br from-blue-400/4 to-cyan-400/4 blur-3xl"
           animate={{
-            x: [0, 60, 0],
-            y: [0, -60, 0],
-            scale: [1, 1.1, 1],
+            x: [0, -60, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 15,
+            duration: 30,
             repeat: Infinity,
             ease: "easeInOut",
           }}
           style={{
-            top: "50%",
-            right: "20%",
+            bottom: "5%",
+            right: "5%",
           }}
         />
       </div>
 
-      {/* Glassmorphic Header */}
+      {/* Minimal Header */}
       <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className="sticky top-0 z-50 backdrop-blur-2xl bg-background/70 border-b border-border/30"
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
           <motion.div
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-3"
+            whileHover={{ scale: 1.02 }}
           >
-            <div className="relative">
-              <BookOpen className="h-6 w-6 text-primary" />
-              <motion.div
-                className="absolute inset-0 bg-primary/20 blur-xl"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 0.8, 0.5],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-              />
-            </div>
-            <span className="text-lg font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              DH Dictionary
+            <BookOpen className="h-5 w-5 text-primary" />
+            <span className="text-base font-medium tracking-tight">
+              Digital Humanities Dictionary
             </span>
           </motion.div>
           <Button
@@ -144,350 +104,168 @@ export default function HomePage() {
             size="icon"
             onClick={toggleTheme}
             data-testid="button-theme-toggle"
-            className="relative overflow-hidden"
+            className="rounded-full"
           >
-            <motion.div
-              initial={false}
-              animate={{ rotate: theme === "light" ? 0 : 180 }}
-              transition={{ duration: 0.3 }}
-            >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-            </motion.div>
+            {theme === "light" ? (
+              <Moon className="h-4 w-4" />
+            ) : (
+              <Sun className="h-4 w-4" />
+            )}
           </Button>
         </div>
       </motion.header>
 
       <main className="relative">
-        {/* Hero Section with Digital Magic Background */}
-        <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-          {/* Digital Grid Background - Turquoise to Blue */}
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-950 via-teal-900 to-blue-950">
-            {/* Animated Grid Lines */}
-            <svg className="absolute inset-0 w-full h-full opacity-20">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(103, 232, 249, 0.3)" strokeWidth="0.5"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-            
-            {/* Glowing gradient overlay */}
-            <motion.div
-              className="absolute inset-0"
-              style={{
-                background: "radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.3) 0%, transparent 70%)",
-              }}
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            
-            {/* Dark vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-          </div>
-
-          {/* Floating Digital Particles */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-cyan-400 rounded-full shadow-lg shadow-cyan-500/50"
-                initial={{
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-                  y: Math.random() * 600 + 600,
-                }}
-                animate={{
-                  y: -100,
-                  opacity: [0, 1, 1, 0],
-                }}
-                transition={{
-                  duration: 8 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                  ease: "linear",
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Hexagonal Floating Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -30, 0],
-                  rotate: [0, 180, 360],
-                  opacity: [0.1, 0.3, 0.1],
-                }}
-                transition={{
-                  duration: 10 + i * 2,
-                  repeat: Infinity,
-                  delay: i * 0.5,
-                  ease: "easeInOut",
-                }}
-              >
-                <svg width="60" height="60" viewBox="0 0 60 60" className="text-cyan-400/20">
-                  <polygon points="30,5 50,15 50,35 30,45 10,35 10,15" fill="currentColor" stroke="currentColor" strokeWidth="1" />
-                </svg>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Digital Scanlines */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(6, 182, 212, 0.03) 2px, rgba(6, 182, 212, 0.03) 4px)",
-            }}
-          />
-
-          {/* Hero Content */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 space-y-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              {/* Language Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 px-6 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-medium border border-white/30"
-              >
-                <Globe className="w-4 h-4" />
-                <span className="text-white">RU · EN</span>
-              </motion.div>
-
-              {/* Main Title with Turquoise to Blue Gradient Animation */}
-              <motion.h1
-                className="text-5xl md:text-7xl font-bold tracking-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              >
-                <span className="inline-block text-white/90">
-                  Словарь терминов
-                </span>
-                <br />
-                <motion.span
-                  className="inline-block bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(6,182,212,0.5)]"
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  style={{
-                    backgroundSize: "200% auto",
-                  }}
-                >
-                  цифровой гуманитаристики
-                </motion.span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="text-xl text-white/95 max-w-2xl mx-auto font-medium"
-              >
-                Онлайн-словарь с определениями на русском и английском языках
-              </motion.p>
-            </motion.div>
-
-            {/* CTA Buttons */}
+        {/* Minimal Hero Section */}
+        <section className="relative py-32 md:py-40 overflow-hidden">
+          {/* Clean gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/5 via-transparent to-transparent" />
+          
+          <div className="relative max-w-5xl mx-auto px-6 md:px-12 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent">
+                Словарь цифровых
+                <br />
+                гуманитарных наук
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+                Двуязычный справочник терминов, методов и технологий для исследователей в области digital humanities
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
               className="flex justify-center gap-4 flex-wrap"
             >
               <Link href="/dictionary">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-cyan-100 to-slate-200 text-slate-700 hover:from-cyan-200 hover:to-slate-300 font-semibold rounded-full px-8 shadow-2xl border border-cyan-200/50"
-                    data-testid="button-browse"
-                  >
-                    <BookOpen className="w-5 h-5 mr-2" />
-                    Просмотреть все термины
-                  </Button>
-                </motion.div>
+                <Button
+                  size="lg"
+                  className="rounded-full px-8 shadow-lg shadow-cyan-500/20 hover:shadow-xl hover:shadow-cyan-500/30 transition-all"
+                  data-testid="button-browse"
+                >
+                  Просмотреть словарь
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
               </Link>
               {terms.length > 0 && (
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button
-                    onClick={handleRandomTerm}
-                    size="lg"
-                    className="bg-white/10 border-2 border-white/40 text-white hover:bg-white/20 backdrop-blur-md rounded-full px-8"
-                    data-testid="button-random"
-                  >
-                    <Shuffle className="h-5 w-5 mr-2" />
-                    Случайный термин
-                  </Button>
-                </motion.div>
+                <Button
+                  onClick={handleRandomTerm}
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full px-8 backdrop-blur-xl"
+                  data-testid="button-random"
+                >
+                  <Shuffle className="h-4 w-4 mr-2" />
+                  Случайный термин
+                </Button>
               )}
             </motion.div>
           </div>
-
-          {/* Bottom Gradient Fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </section>
 
-        {/* Stats Section with 3D Cards */}
-        <section className="relative max-w-7xl mx-auto px-4 md:px-8 -mt-16 mb-12 z-20">
+        {/* Floating Stats Cards */}
+        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-8 mb-24">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: BookOpen, value: animatedTermCount, label: "Всего терминов", color: "from-teal-500 to-teal-600", testId: "text-total-terms" },
-              { icon: TrendingUp, value: animatedSectionCount, label: "Разделов", color: "from-teal-500 to-teal-600", testId: "text-total-sections" },
-              { icon: Globe, value: 2, label: "Языка", color: "from-teal-500 to-teal-600", testId: "text-total-languages" },
+              { icon: BookOpen, value: animatedTermCount, label: "Терминов", testId: "text-total-terms" },
+              { icon: TrendingUp, value: animatedSectionCount, label: "Разделов", testId: "text-total-sections" },
+              { icon: Globe, value: 2, label: "Языка", testId: "text-total-languages" },
             ].map((stat, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                whileHover={{ y: -8, rotateY: 5 }}
-                style={{ transformStyle: "preserve-3d" }}
+                transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
               >
-                <Card className="relative overflow-hidden backdrop-blur-xl bg-card/80 border-border/50 shadow-xl">
-                  <CardContent className="pt-8 pb-6 text-center">
-                    <motion.div
-                      className={`inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br ${stat.color} mb-4`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <stat.icon className="w-7 h-7 text-white" />
-                    </motion.div>
-                    <div className="text-4xl font-bold bg-gradient-to-br from-foreground to-foreground/60 bg-clip-text text-transparent mb-2" data-testid={stat.testId}>
+                <Card className="relative overflow-hidden backdrop-blur-2xl bg-card/50 border-border/40 shadow-xl shadow-black/5 rounded-2xl">
+                  <CardContent className="pt-8 pb-8 text-center">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500/10 to-teal-500/10 mb-4">
+                      <stat.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="text-4xl font-bold mb-1" data-testid={stat.testId}>
                       {stat.value}
                     </div>
                     <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
                   </CardContent>
-                  {/* Shine effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6 }}
-                  />
                 </Card>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Featured Term with Glow Effect */}
+        {/* Featured Term - Floating Card */}
         {featuredTerm && (
-          <section className="max-w-7xl mx-auto px-4 md:px-8 mb-12">
+          <section className="max-w-4xl mx-auto px-6 md:px-12 mb-24">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <Card className="relative overflow-hidden backdrop-blur-xl bg-gradient-to-br from-primary/5 via-card to-secondary/5 border-primary/30 shadow-2xl">
-                {/* Animated border glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent opacity-50 blur-xl" />
-                <div className="absolute inset-[1px] bg-card rounded-[inherit]" />
-                
-                <CardContent className="relative pt-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <motion.div
-                      animate={{
-                        rotate: [0, 360],
-                        scale: [1, 1.2, 1],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <Sparkles className="h-5 w-5 text-primary" />
-                    </motion.div>
-                    <h3 className="text-sm font-bold text-primary uppercase tracking-widest">
-                      Термин дня
-                    </h3>
-                  </div>
-                  <Link href={`/term/${featuredTerm.id}`}>
-                    <motion.div
-                      className="p-6 rounded-xl bg-gradient-to-br from-background/50 to-background/30 backdrop-blur-sm cursor-pointer"
-                      whileHover={{ scale: 1.02, y: -4 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <h4 className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <div className="flex items-center gap-2 mb-6">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <h3 className="text-sm font-semibold text-primary uppercase tracking-wider">
+                  Термин дня
+                </h3>
+              </div>
+              <Link href={`/term/${featuredTerm.id}`}>
+                <motion.div whileHover={{ y: -4, scale: 1.01 }}>
+                  <Card className="relative overflow-hidden backdrop-blur-2xl bg-gradient-to-br from-card/80 to-card/50 border-border/40 shadow-2xl shadow-black/5 rounded-2xl cursor-pointer">
+                    <CardContent className="p-10">
+                      <h4 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
                         {featuredTerm.term}
                       </h4>
-                      <p className="text-muted-foreground leading-relaxed line-clamp-2 mb-3">
-                        {featuredTerm.definition}
+                      <p className="text-muted-foreground leading-relaxed mb-4 text-lg">
+                        {featuredTerm.definition.length > 200
+                          ? featuredTerm.definition.substring(0, 200) + "..."
+                          : featuredTerm.definition}
                       </p>
                       {featuredTerm.englishEquivalent && (
-                        <p className="text-sm text-primary font-medium italic">
-                          EN: {featuredTerm.englishEquivalent}
+                        <p className="text-sm text-primary font-medium">
+                          English: {featuredTerm.englishEquivalent}
                         </p>
                       )}
-                    </motion.div>
-                  </Link>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </Link>
             </motion.div>
           </section>
         )}
 
-        {/* Sections Grid */}
+        {/* Clean Sections Grid */}
         {sections.length > 0 && (
-          <section className="max-w-7xl mx-auto px-4 md:px-8 pb-20">
+          <section className="max-w-6xl mx-auto px-6 md:px-12 pb-32">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex items-center justify-between mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+              className="mb-10"
             >
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
-                Разделы
-              </h2>
-              <Zap className="w-6 h-6 text-primary" />
+              <h2 className="text-3xl font-bold tracking-tight">Разделы</h2>
+              <p className="text-muted-foreground mt-2">Исследуйте термины по категориям</p>
             </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {sections.map((section, i) => (
                 <motion.div
                   key={section.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 + i * 0.05 }}
-                  whileHover={{ scale: 1.03, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
+                  transition={{ delay: 0.8 + i * 0.05 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
                 >
                   <Link href={`/dictionary?section=${encodeURIComponent(section.name)}`}>
                     <Card
-                      className="relative overflow-hidden backdrop-blur-xl bg-card/80 border-border/50 cursor-pointer group h-full min-h-[120px] flex flex-col"
+                      className="relative overflow-hidden backdrop-blur-2xl bg-card/50 border-border/40 shadow-lg shadow-black/5 rounded-2xl cursor-pointer group h-full min-h-[140px] flex flex-col transition-all hover:shadow-xl hover:shadow-cyan-500/10"
                       data-testid={`card-section-${section.name}`}
                     >
-                      {/* Gradient accent */}
-                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-teal-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      
-                      <CardContent className="pt-6 pb-6 flex-1 flex flex-col justify-center">
+                      <CardContent className="p-8 flex-1 flex flex-col justify-center">
                         <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                           {section.name}
                         </h3>
@@ -495,11 +273,9 @@ export default function HomePage() {
                           {section.count} {section.count === 1 ? "термин" : section.count < 5 ? "термина" : "терминов"}
                         </p>
                       </CardContent>
-
-                      {/* Hover glow */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                      />
+                      
+                      {/* Subtle hover accent */}
+                      <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Card>
                   </Link>
                 </motion.div>
