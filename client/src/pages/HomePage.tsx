@@ -83,7 +83,7 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Minimal Header */}
+      {/* Floating Teal Header */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -94,9 +94,23 @@ export default function HomePage() {
             className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
           >
-            <BookOpen className="h-5 w-5 text-primary" />
-            <span className="text-base font-medium tracking-tight">
-              Digital Humanities Dictionary
+            <div className="relative">
+              <BookOpen className="h-5 w-5 text-primary relative z-10" />
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 to-teal-400/30 blur-lg"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
+            <span className="text-base font-semibold tracking-tight bg-gradient-to-r from-cyan-600 to-teal-600 dark:from-cyan-400 dark:to-teal-400 bg-clip-text text-transparent">
+              DH Dictionary
             </span>
           </motion.div>
           <Button
