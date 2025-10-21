@@ -30,11 +30,13 @@ export default function TermDetail({
     queryKey: ["/api/terms"],
   });
 
-  // Map related term names to their IDs
-  const relatedTermsWithIds = relatedTerms?.map((relatedTermName) => {
-    const foundTerm = allTerms.find((t) => t.term === relatedTermName);
-    return { name: relatedTermName, id: foundTerm?.id };
-  });
+  // Map related term names to their IDs and sort alphabetically
+  const relatedTermsWithIds = relatedTerms
+    ?.map((relatedTermName) => {
+      const foundTerm = allTerms.find((t) => t.term === relatedTermName);
+      return { name: relatedTermName, id: foundTerm?.id };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">

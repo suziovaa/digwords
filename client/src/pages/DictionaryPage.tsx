@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "wouter";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import SearchBar from "@/components/SearchBar";
 import AlphabetNav from "@/components/AlphabetNav";
@@ -22,6 +22,21 @@ export default function DictionaryPage() {
   const [searchValue, setSearchValue] = useState("");
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
   const [selectedSections, setSelectedSections] = useState<string[]>([]);
+  const [location] = useLocation();
+
+  // Parse URL parameters to set initial section filter and search query
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const sectionParam = params.get('section');
+    const searchParam = params.get('q');
+    
+    if (sectionParam) {
+      setSelectedSections([sectionParam]);
+    }
+    if (searchParam) {
+      setSearchValue(searchParam);
+    }
+  }, [location]);
   const { theme, toggleTheme } = useTheme();
 
   // Fetch all terms
@@ -44,23 +59,25 @@ export default function DictionaryPage() {
     setSelectedSections([]);
   };
 
-  const filteredTerms = terms.filter((term) => {
-    const matchesSearch =
-      !searchValue ||
-      term.term.toLowerCase().includes(searchValue.toLowerCase()) ||
-      term.definition.toLowerCase().includes(searchValue.toLowerCase()) ||
-      term.englishEquivalent?.toLowerCase().includes(searchValue.toLowerCase()) ||
-      term.usageExample?.toLowerCase().includes(searchValue.toLowerCase());
+  const filteredTerms = terms
+    .filter((term) => {
+      const matchesSearch =
+        !searchValue ||
+        term.term.toLowerCase().includes(searchValue.toLowerCase()) ||
+        term.definition.toLowerCase().includes(searchValue.toLowerCase()) ||
+        term.englishEquivalent?.toLowerCase().includes(searchValue.toLowerCase()) ||
+        term.usageExample?.toLowerCase().includes(searchValue.toLowerCase());
 
-    const matchesLetter =
-      !selectedLetter || term.term.startsWith(selectedLetter);
+      const matchesLetter =
+        !selectedLetter || term.term.startsWith(selectedLetter);
 
-    const matchesSection =
-      selectedSections.length === 0 ||
-      selectedSections.includes(term.section);
+      const matchesSection =
+        selectedSections.length === 0 ||
+        selectedSections.includes(term.section);
 
-    return matchesSearch && matchesLetter && matchesSection;
-  });
+      return matchesSearch && matchesLetter && matchesSection;
+    })
+    .sort((a, b) => a.term.localeCompare(b.term, 'ru'));
 
   return (
     <motion.div 
