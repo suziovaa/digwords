@@ -94,8 +94,10 @@ export default function HomePage() {
             className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
           >
-            <BookOpen className="h-5 w-5 text-primary" />
-            <span className="text-base font-semibold tracking-tight bg-gradient-to-r from-cyan-600 to-teal-600 dark:from-cyan-400 dark:to-teal-400 bg-clip-text text-transparent">
+            <div className="relative">
+              <BookOpen className="h-5 w-5 text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.8)]" />
+            </div>
+            <span className="text-base font-semibold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.6)]">
               DH Dictionary
             </span>
           </motion.div>
