@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Sparkles, Shuffle, TrendingUp, Globe, ArrowRight } from "lucide-react";
+import { BookOpen, Sparkles, Shuffle, Globe, ArrowRight } from "lucide-react";
 import { type Term } from "@shared/schema";
 import { useCountUp } from "@/hooks/useCountUp";
 import { motion } from "framer-motion";
@@ -24,7 +24,6 @@ export default function HomePage() {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   const animatedTermCount = useCountUp(terms.length);
-  const animatedSectionCount = useCountUp(sections.length);
 
   const featuredTerm = useMemo(() => {
     if (terms.length === 0) return null;
@@ -243,35 +242,46 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Floating Stats Cards - positioned to overlap with hero gradient shadow */}
-        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-16 mb-24 z-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: BookOpen, value: animatedTermCount, label: "Терминов", testId: "text-total-terms" },
-              { icon: TrendingUp, value: animatedSectionCount, label: "Разделов", testId: "text-total-sections" },
-              { icon: Globe, value: 2, label: "Языка", testId: "text-total-languages" },
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-              >
-                <Card className="relative overflow-hidden backdrop-blur-2xl bg-card/50 border-border/40 shadow-xl shadow-black/5 rounded-2xl">
-                  <CardContent className="pt-8 pb-8 text-center">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500/10 to-teal-500/10 mb-4">
-                      <stat.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="text-4xl font-bold mb-1" data-testid={stat.testId}>
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+        {/* Minimalist Stats Bar - positioned to overlap with hero gradient shadow */}
+        <section className="relative max-w-4xl mx-auto px-6 md:px-12 -mt-16 mb-24 z-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 py-8"
+          >
+            {/* Terms Count */}
+            <div className="flex items-center gap-3 group">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500/15 to-teal-500/15 group-hover:from-cyan-500/25 group-hover:to-teal-500/25 transition-colors">
+                <BookOpen className="w-5 h-5 text-primary" />
+              </div>
+              <div className="text-left">
+                <div className="text-3xl font-bold text-foreground" data-testid="text-total-terms">
+                  {animatedTermCount}
+                </div>
+                <div className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                  Терминов
+                </div>
+              </div>
+            </div>
+
+            {/* Separator */}
+            <div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent" />
+
+            {/* Languages Badge */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500/15 to-teal-500/15">
+                <Globe className="w-5 h-5 text-primary" />
+              </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-teal-500/10 border border-primary/20" data-testid="text-languages">
+                <span className="text-sm font-semibold text-foreground">ru</span>
+                <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                </svg>
+                <span className="text-sm font-semibold text-foreground">en</span>
+              </div>
+            </div>
+          </motion.div>
         </section>
 
         {/* Featured Term - Floating Card */}
