@@ -85,9 +85,9 @@ export default function HomePage() {
 
       {/* Clean Glassmorphic Header */}
       <motion.header
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: 0, opacity: 1 }}
         animate={{ y: 0, opacity: 1 }}
-        className="sticky top-0 z-50 backdrop-blur-2xl bg-background/70 border-b border-border/30"
+        className="sticky top-0 z-50 backdrop-blur-2xl bg-transparent border-b border-border/20"
       >
         <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
           <motion.div
@@ -246,7 +246,7 @@ export default function HomePage() {
                   onClick={handleRandomTerm}
                   size="lg"
                   variant="outline"
-                  className="rounded-full px-8 backdrop-blur-xl"
+                  className="rounded-full px-8 backdrop-blur-xl text-white border-white/40 hover:bg-white/10"
                   data-testid="button-random"
                 >
                   <Shuffle className="h-4 w-4 mr-2" />
