@@ -54,10 +54,10 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
-      {/* Animated Background Orbs */}
+      {/* Animated Background Orbs - Clean & Transparent */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 blur-3xl"
+          className="absolute w-[500px] h-[500px] rounded-full bg-gradient-to-br from-cyan-400/8 to-teal-400/8 blur-3xl"
           animate={{
             x: [0, 100, 0],
             y: [0, 50, 0],
@@ -74,7 +74,7 @@ export default function HomePage() {
           }}
         />
         <motion.div
-          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-br from-accent/20 to-primary/20 blur-3xl"
+          className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-br from-blue-400/6 to-cyan-400/6 blur-3xl"
           animate={{
             x: [0, -80, 0],
             y: [0, 80, 0],
@@ -91,7 +91,7 @@ export default function HomePage() {
           }}
         />
         <motion.div
-          className="absolute w-[300px] h-[300px] rounded-full bg-gradient-to-br from-secondary/25 to-accent/25 blur-3xl"
+          className="absolute w-[300px] h-[300px] rounded-full bg-gradient-to-br from-teal-400/7 to-blue-400/7 blur-3xl"
           animate={{
             x: [0, 60, 0],
             y: [0, -60, 0],
