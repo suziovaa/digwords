@@ -164,13 +164,13 @@ export default function HomePage() {
       <main className="relative">
         {/* Hero Section with Digital Magic Background */}
         <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-          {/* Digital Grid Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-purple-900 to-violet-950">
+          {/* Digital Grid Background - Turquoise to Blue */}
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-950 via-teal-900 to-blue-950">
             {/* Animated Grid Lines */}
             <svg className="absolute inset-0 w-full h-full opacity-20">
               <defs>
                 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(167, 139, 250, 0.3)" strokeWidth="0.5"/>
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(103, 232, 249, 0.3)" strokeWidth="0.5"/>
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
@@ -180,7 +180,7 @@ export default function HomePage() {
             <motion.div
               className="absolute inset-0"
               style={{
-                background: "radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.3) 0%, transparent 70%)",
+                background: "radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.3) 0%, transparent 70%)",
               }}
               animate={{
                 scale: [1, 1.2, 1],
@@ -202,7 +202,7 @@ export default function HomePage() {
             {[...Array(20)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-1 h-1 bg-violet-400 rounded-full shadow-lg shadow-violet-500/50"
+                className="absolute w-1 h-1 bg-cyan-400 rounded-full shadow-lg shadow-cyan-500/50"
                 initial={{
                   x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
                   y: Math.random() * 600 + 600,
@@ -243,7 +243,7 @@ export default function HomePage() {
                   ease: "easeInOut",
                 }}
               >
-                <svg width="60" height="60" viewBox="0 0 60 60" className="text-violet-400/20">
+                <svg width="60" height="60" viewBox="0 0 60 60" className="text-cyan-400/20">
                   <polygon points="30,5 50,15 50,35 30,45 10,35 10,15" fill="currentColor" stroke="currentColor" strokeWidth="1" />
                 </svg>
               </motion.div>
@@ -254,7 +254,7 @@ export default function HomePage() {
           <motion.div
             className="absolute inset-0 pointer-events-none"
             style={{
-              backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(147, 51, 234, 0.03) 2px, rgba(147, 51, 234, 0.03) 4px)",
+              backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(6, 182, 212, 0.03) 2px, rgba(6, 182, 212, 0.03) 4px)",
             }}
           />
 
@@ -277,7 +277,7 @@ export default function HomePage() {
                 <span className="text-white">RU · EN</span>
               </motion.div>
 
-              {/* Main Title with Violet Gradient Animation */}
+              {/* Main Title with Turquoise to Blue Gradient Animation */}
               <motion.h1
                 className="text-5xl md:text-7xl font-bold tracking-tight"
                 initial={{ opacity: 0, y: 20 }}
@@ -289,7 +289,7 @@ export default function HomePage() {
                 </span>
                 <br />
                 <motion.span
-                  className="inline-block bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(147,51,234,0.5)]"
+                  className="inline-block bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(6,182,212,0.5)]"
                   animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                   }}
@@ -359,9 +359,9 @@ export default function HomePage() {
         <section className="relative max-w-7xl mx-auto px-4 md:px-8 -mt-16 mb-12 z-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: BookOpen, value: animatedTermCount, label: "Всего терминов", color: "from-primary to-primary/60", testId: "text-total-terms" },
-              { icon: TrendingUp, value: animatedSectionCount, label: "Разделов", color: "from-secondary to-secondary/60", testId: "text-total-sections" },
-              { icon: Globe, value: 2, label: "Языка", color: "from-accent to-accent/60", testId: "text-total-languages" },
+              { icon: BookOpen, value: animatedTermCount, label: "Всего терминов", color: "from-cyan-500 to-cyan-600", testId: "text-total-terms" },
+              { icon: TrendingUp, value: animatedSectionCount, label: "Разделов", color: "from-teal-500 to-teal-600", testId: "text-total-sections" },
+              { icon: Globe, value: 2, label: "Языка", color: "from-blue-500 to-blue-600", testId: "text-total-languages" },
             ].map((stat, i) => (
               <motion.div
                 key={i}
