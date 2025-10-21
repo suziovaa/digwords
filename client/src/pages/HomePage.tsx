@@ -252,33 +252,33 @@ export default function HomePage() {
           >
             {/* Terms Count */}
             <div className="flex items-center gap-3 group">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500/15 to-teal-500/15 group-hover:from-cyan-500/25 group-hover:to-teal-500/25 transition-colors">
-                <BookOpen className="w-5 h-5 text-primary" />
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm group-hover:bg-white/30 transition-colors">
+                <BookOpen className="w-5 h-5 text-white" />
               </div>
               <div className="text-left">
-                <div className="text-3xl font-bold text-foreground" data-testid="text-total-terms">
+                <div className="text-3xl font-bold text-white" data-testid="text-total-terms">
                   {animatedTermCount}
                 </div>
-                <div className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                <div className="text-xs text-white/80 font-medium uppercase tracking-wide">
                   Терминов
                 </div>
               </div>
             </div>
 
             {/* Separator */}
-            <div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-border to-transparent" />
+            <div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
 
             {/* Languages Badge */}
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500/15 to-teal-500/15">
-                <Globe className="w-5 h-5 text-primary" />
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm">
+                <Globe className="w-5 h-5 text-white" />
               </div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-teal-500/10 border border-primary/20" data-testid="text-languages">
-                <span className="text-sm font-semibold text-foreground">ru</span>
-                <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/25" data-testid="text-languages">
+                <span className="text-sm font-semibold text-white">ru</span>
+                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                 </svg>
-                <span className="text-sm font-semibold text-foreground">en</span>
+                <span className="text-sm font-semibold text-white">en</span>
               </div>
             </div>
           </motion.div>
