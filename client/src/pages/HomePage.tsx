@@ -162,51 +162,101 @@ export default function HomePage() {
       </motion.header>
 
       <main className="relative">
-        {/* Hero Section with 3D Parallax */}
+        {/* Hero Section with Digital Magic Background */}
         <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-          {/* Animated Gradient Background */}
-          <div className="absolute inset-0">
+          {/* Digital Grid Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-purple-900 to-violet-950">
+            {/* Animated Grid Lines */}
+            <svg className="absolute inset-0 w-full h-full opacity-20">
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(167, 139, 250, 0.3)" strokeWidth="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+            
+            {/* Glowing gradient overlay */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent opacity-90"
+              className="absolute inset-0"
+              style={{
+                background: "radial-gradient(circle at 50% 50%, rgba(147, 51, 234, 0.3) 0%, transparent 70%)",
+              }}
               animate={{
-                backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3],
               }}
               transition={{
-                duration: 20,
+                duration: 8,
                 repeat: Infinity,
-                ease: "linear",
-              }}
-              style={{
-                backgroundSize: "200% 200%",
+                ease: "easeInOut",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            
+            {/* Dark vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
           </div>
 
-          {/* Floating Shapes */}
+          {/* Floating Digital Particles */}
           <div className="absolute inset-0 overflow-hidden">
-            {[...Array(6)].map((_, i) => (
+            {[...Array(20)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-32 h-32 rounded-full border-2 border-white/10"
+                className="absolute w-1 h-1 bg-violet-400 rounded-full shadow-lg shadow-violet-500/50"
                 initial={{
-                  x: Math.random() * window.innerWidth,
-                  y: Math.random() * 600,
+                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+                  y: Math.random() * 600 + 600,
                 }}
                 animate={{
-                  y: [null, -100],
-                  x: [null, Math.random() * 100 - 50],
-                  opacity: [0, 1, 0],
+                  y: -100,
+                  opacity: [0, 1, 1, 0],
                 }}
                 transition={{
-                  duration: 10 + i * 2,
+                  duration: 8 + Math.random() * 4,
                   repeat: Infinity,
-                  delay: i * 2,
-                  ease: "easeInOut",
+                  delay: Math.random() * 5,
+                  ease: "linear",
                 }}
               />
             ))}
           </div>
+
+          {/* Hexagonal Floating Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, -30, 0],
+                  rotate: [0, 180, 360],
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  duration: 10 + i * 2,
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                  ease: "easeInOut",
+                }}
+              >
+                <svg width="60" height="60" viewBox="0 0 60 60" className="text-violet-400/20">
+                  <polygon points="30,5 50,15 50,35 30,45 10,35 10,15" fill="currentColor" stroke="currentColor" strokeWidth="1" />
+                </svg>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Digital Scanlines */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(147, 51, 234, 0.03) 2px, rgba(147, 51, 234, 0.03) 4px)",
+            }}
+          />
 
           {/* Hero Content */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 space-y-8 text-center">
@@ -227,19 +277,19 @@ export default function HomePage() {
                 <span className="text-white">RU · EN</span>
               </motion.div>
 
-              {/* Main Title with Gradient Animation */}
+              {/* Main Title with Violet Gradient Animation */}
               <motion.h1
-                className="text-5xl md:text-7xl font-bold tracking-tight text-white"
+                className="text-5xl md:text-7xl font-bold tracking-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
               >
-                <span className="inline-block">
+                <span className="inline-block text-white/90">
                   Словарь терминов
                 </span>
                 <br />
                 <motion.span
-                  className="inline-block bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent"
+                  className="inline-block bg-gradient-to-r from-violet-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(147,51,234,0.5)]"
                   animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                   }}
