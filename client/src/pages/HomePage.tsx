@@ -84,8 +84,15 @@ export default function HomePage() {
       <main className="relative bg-white">
         {/* Hero Section with Magical Teal Ocean */}
         <section className="relative py-32 md:py-40 overflow-visible">
-          {/* Rich teal-cyan digital ocean background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/60 via-teal-800/70 to-blue-900/60 dark:from-cyan-900/80 dark:via-teal-800/90 dark:to-blue-900/80" />
+          {/* Rich teal-cyan digital ocean background with extended shadow */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-br from-cyan-900/60 via-teal-800/70 to-blue-900/60 dark:from-cyan-900/80 dark:via-teal-800/90 dark:to-blue-900/80"
+            style={{
+              height: '150%',
+              maskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)'
+            }}
+          />
           
           {/* Animated grid with more visibility */}
           <svg className="absolute inset-0 w-full h-full opacity-[0.08] dark:opacity-[0.15]">
@@ -236,16 +243,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Smooth Gradient Transition Zone - Ultra smooth multi-stop gradient */}
-        <div 
-          className="relative h-80"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(8, 145, 178, 0.6) 0%, rgba(13, 148, 136, 0.5) 15%, rgba(20, 184, 166, 0.4) 30%, rgba(20, 184, 166, 0.25) 45%, rgba(20, 184, 166, 0.15) 60%, rgba(20, 184, 166, 0.08) 75%, rgba(255, 255, 255, 0.5) 85%, rgba(255, 255, 255, 1) 100%)'
-          }}
-        />
-
-        {/* Floating Stats Cards */}
-        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-48 mb-24 z-20">
+        {/* Floating Stats Cards - positioned to overlap with hero gradient shadow */}
+        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-16 mb-24 z-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { icon: BookOpen, value: animatedTermCount, label: "Терминов", testId: "text-total-terms" },
