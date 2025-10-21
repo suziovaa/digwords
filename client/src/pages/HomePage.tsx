@@ -12,10 +12,20 @@ import { motion } from "framer-motion";
 export default function HomePage() {
   const { theme, toggleTheme } = useTheme();
   const [, setLocation] = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const { data: terms = [] } = useQuery<Term[]>({
     queryKey: ["/api/terms"],
   });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Change header style after scrolling past hero section (roughly 500px)
+      setIsScrolled(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const sections = Array.from(
     terms.reduce((acc, term) => {
@@ -87,7 +97,9 @@ export default function HomePage() {
       <motion.header
         initial={{ y: 0, opacity: 1 }}
         animate={{ y: 0, opacity: 1 }}
-        className="sticky top-0 z-50 backdrop-blur-2xl bg-transparent border-b border-border/20"
+        className={`sticky top-0 z-50 backdrop-blur-2xl border-b border-border/20 transition-colors duration-300 ${
+          isScrolled ? "bg-background/80" : "bg-transparent"
+        }`}
       >
         <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
           <motion.div
@@ -95,9 +107,21 @@ export default function HomePage() {
             whileHover={{ scale: 1.02 }}
           >
             <div className="relative">
-              <BookOpen className="h-5 w-5 text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.8)]" />
+              <BookOpen 
+                className={`h-5 w-5 transition-all duration-300 ${
+                  isScrolled 
+                    ? "text-primary" 
+                    : "text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.8)]"
+                }`} 
+              />
             </div>
-            <span className="text-base font-semibold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.6)]">
+            <span 
+              className={`text-base font-semibold tracking-tight transition-all duration-300 ${
+                isScrolled 
+                  ? "bg-gradient-to-r from-cyan-600 to-teal-600 dark:from-cyan-400 dark:to-teal-400 bg-clip-text text-transparent" 
+                  : "text-white drop-shadow-[0_2px_8px_rgba(6,182,212,0.6)]"
+              }`}
+            >
               DH Dictionary
             </span>
           </motion.div>
