@@ -83,13 +83,39 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Floating Teal Header */}
+      {/* Floating Teal Header with Sparkles */}
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="sticky top-0 z-50 backdrop-blur-2xl bg-background/70 border-b border-border/30"
+        className="sticky top-0 z-50 backdrop-blur-2xl bg-gradient-to-r from-cyan-500/10 via-teal-500/10 to-cyan-500/10 border-b border-cyan-500/20"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
+        {/* Sparkling floating elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-cyan-400/40 rounded-full"
+              animate={{
+                x: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
+                scale: [0, 1.5, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: i * 0.4,
+                ease: "easeInOut",
+              }}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
           <motion.div
             className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
