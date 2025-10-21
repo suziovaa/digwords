@@ -113,7 +113,7 @@ export default function HomePage() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="sticky top-0 z-50 backdrop-blur-xl bg-background/60 border-b border-border/50"
+        className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50"
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between gap-4">
           <motion.div
@@ -372,7 +372,6 @@ export default function HomePage() {
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <Card className="relative overflow-hidden backdrop-blur-xl bg-card/80 border-border/50 shadow-xl">
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.color}`} />
                   <CardContent className="pt-8 pb-6 text-center">
                     <motion.div
                       className={`inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br ${stat.color} mb-4`}
@@ -482,13 +481,13 @@ export default function HomePage() {
                 >
                   <Link href={`/dictionary?section=${encodeURIComponent(section.name)}`}>
                     <Card
-                      className="relative overflow-hidden backdrop-blur-xl bg-card/80 border-border/50 cursor-pointer group"
+                      className="relative overflow-hidden backdrop-blur-xl bg-card/80 border-border/50 cursor-pointer group h-full min-h-[120px] flex flex-col"
                       data-testid={`card-section-${section.name}`}
                     >
                       {/* Gradient accent */}
-                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 to-teal-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                       
-                      <CardContent className="pt-6 pb-6">
+                      <CardContent className="pt-6 pb-6 flex-1 flex flex-col justify-center">
                         <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                           {section.name}
                         </h3>
