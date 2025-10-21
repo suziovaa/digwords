@@ -3,14 +3,12 @@ import { Link, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Moon, Sun, Sparkles, Shuffle, TrendingUp, Globe, ArrowRight } from "lucide-react";
-import { useTheme } from "@/components/ThemeProvider";
+import { BookOpen, Sparkles, Shuffle, TrendingUp, Globe, ArrowRight } from "lucide-react";
 import { type Term } from "@shared/schema";
 import { useCountUp } from "@/hooks/useCountUp";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
-  const { theme, toggleTheme } = useTheme();
   const [, setLocation] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -132,19 +130,6 @@ export default function HomePage() {
               DH Dictionary
             </span>
           </motion.div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            data-testid="button-theme-toggle"
-            className="rounded-full"
-          >
-            {theme === "light" ? (
-              <Moon className="h-4 w-4" />
-            ) : (
-              <Sun className="h-4 w-4" />
-            )}
-          </Button>
         </div>
       </motion.header>
 
