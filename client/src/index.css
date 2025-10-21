@@ -211,25 +211,7 @@
   }
 
   body {
-    @apply font-sans antialiased text-foreground;
-    background: hsl(var(--background));
-  }
-  
-  /* Teal ocean background for homepage */
-  body.homepage {
-    background: linear-gradient(to bottom right, 
-      rgba(8, 145, 178, 0.6), 
-      rgba(20, 184, 166, 0.7), 
-      rgba(30, 64, 175, 0.6)
-    );
-  }
-  
-  body.homepage.dark {
-    background: linear-gradient(to bottom right, 
-      rgba(8, 145, 178, 0.8), 
-      rgba(20, 184, 166, 0.9), 
-      rgba(30, 64, 175, 0.8)
-    );
+    @apply font-sans antialiased text-foreground bg-background;
   }
 }
 

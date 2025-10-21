@@ -51,15 +51,8 @@ export default function HomePage() {
     }
   };
 
-  useEffect(() => {
-    document.body.classList.add('homepage');
-    return () => {
-      document.body.classList.remove('homepage');
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="min-h-screen bg-white">
       {/* Subtle Ambient Orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <motion.div
@@ -276,10 +269,13 @@ export default function HomePage() {
               )}
             </motion.div>
           </div>
+
+          {/* Gradient transition to white */}
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-white pointer-events-none" />
         </section>
 
         {/* Floating Stats Cards */}
-        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-8 mb-24">
+        <section className="relative max-w-6xl mx-auto px-6 md:px-12 -mt-8 mb-24 bg-white pt-16 z-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { icon: BookOpen, value: animatedTermCount, label: "Терминов", testId: "text-total-terms" },
@@ -311,7 +307,7 @@ export default function HomePage() {
 
         {/* Featured Term - Floating Card */}
         {featuredTerm && (
-          <section className="max-w-4xl mx-auto px-6 md:px-12 mb-24">
+          <section className="max-w-4xl mx-auto px-6 md:px-12 mb-24 bg-white">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -350,7 +346,7 @@ export default function HomePage() {
 
         {/* Clean Sections Grid */}
         {sections.length > 0 && (
-          <section className="max-w-6xl mx-auto px-6 md:px-12 pb-32">
+          <section className="max-w-6xl mx-auto px-6 md:px-12 pb-32 bg-white">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
