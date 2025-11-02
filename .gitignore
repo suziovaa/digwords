@@ -5,10 +5,16 @@ server/public
 vite.config.ts.*
 *.tar.gz
 
-# Environment variables
+# Environment variables (keep .env.example for reference)
 .env
 .env.local
+.env.development
 .env.production
+client/.env.local
+client/.env.development
+
+# Allow client/.env.production (contains only public API URL)
+!client/.env.production
 
 # IDE
 .vscode

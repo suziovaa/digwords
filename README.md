@@ -29,6 +29,10 @@ A modern bilingual (Russian-English) online dictionary for digital humanities te
 - Drizzle ORM for type-safe database queries
 - Multer for file uploads (Excel import)
 
+## 🌐 Live Demo
+
+Visit the live site: [https://www.digwords.online](https://www.digwords.online)
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -118,9 +122,23 @@ The design features:
 
 ## 🔐 Environment Variables
 
+**Backend (.env):**
 - `DATABASE_URL`: PostgreSQL connection string
 - `SESSION_SECRET`: Secret for session management
 - `NODE_ENV`: Set to `production` for production builds
+
+**Frontend (client/.env.production):**
+- `VITE_API_URL`: Backend API URL (e.g., https://your-backend.onrender.com)
+
+See `.env.example` and `client/.env.example` for templates.
+
+## 🚀 Deployment
+
+This project is configured for deployment with:
+- **Frontend**: GitHub Pages (static hosting)
+- **Backend**: Render (Node.js hosting)
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed step-by-step deployment instructions.
 
 ## 📝 License
 
