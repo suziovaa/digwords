@@ -29,9 +29,7 @@ jobs:
           VITE_API_URL: https://digwords-api.onrender.com
         
       - name: Build frontend
-        run: npm run build
-        env:
-          VITE_API_URL: https://digwords-api.onrender.com
+        run: ./build-github.sh
       
       - name: Copy SPA routing files
         run: |
