@@ -23,13 +23,14 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Verify API URL environment variable
-        run: echo "VITE_API_URL is set to $VITE_API_URL"
-        env:
-          VITE_API_URL: https://digwords-api.onrender.com
+      - name: Create production environment file
+        run: echo "VITE_API_URL=https://digwords-api.onrender.com" > .env.production
+        
+      - name: Verify environment file
+        run: cat .env.production
         
       - name: Build frontend
-        run: VITE_API_URL=https://digwords-api.onrender.com npm run build
+        run: npm run build
       
       - name: Copy SPA routing files
         run: |
