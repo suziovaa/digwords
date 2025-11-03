@@ -12,3 +12,4 @@ export function getApiUrl(path: string): string {
   // Otherwise use relative paths (development with same-origin)
   return API_BASE_URL ? `${API_BASE_URL}${path}` : path;
 }
+
