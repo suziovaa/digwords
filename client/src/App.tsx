@@ -10,8 +10,15 @@ import TermDetailPage from "@/pages/TermDetailPage";
 import AdminPage from "@/pages/AdminPage";
 import NotFound from "@/pages/not-found";
 import { useHashLocation } from "wouter/use-hash-location";
+import { useEffect } from "react";
 
 function Router() {
+  const [location] = useHashLocation();
+  
+  useEffect(() => {
+    console.log("Current hash location:", location);
+  }, [location]);
+  
   return (
     <WouterRouter hook={useHashLocation}>
       <Switch>
