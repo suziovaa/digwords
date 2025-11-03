@@ -44,6 +44,8 @@ jobs:
           ls -la dist/public/
           echo "404.html exists:" 
           cat dist/public/404.html
+          echo "Checking if API URL is in built JavaScript:"
+          grep -r "digwords-api.onrender.com" dist/public/assets/*.js && echo "✅ API URL found in built files" || echo "❌ API URL NOT found in built files"
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
