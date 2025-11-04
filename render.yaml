@@ -1,7 +1,7 @@
 services:
-  # Backend API Service
+  # Full-stack service: Frontend (SPA) + Backend (API)
   - type: web
-    name: digwords-api
+    name: digwords
     runtime: node
     region: frankfurt
     plan: free

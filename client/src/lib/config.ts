@@ -1,17 +1,11 @@
-// API configuration for different environments
-// In production (GitHub Pages), always use the Render backend
-// In development (Replit), use relative paths for same-origin requests
-const isProduction = import.meta.env.MODE === 'production';
-export const API_BASE_URL = isProduction 
-  ? 'https://digwords-api.onrender.com'
-  : (import.meta.env.VITE_API_URL || '');
+// API configuration for same-origin deployment
+// Both frontend and backend are served from the same Render instance
+// Use relative paths for all API requests
+export const API_BASE_URL = '';
 
-// Helper to construct full API URLs
+// Helper to construct API URLs
 export function getApiUrl(path: string): string {
-  // If API_BASE_URL is set, use it as full URL
-  // Otherwise use relative paths (development with same-origin)
-  return API_BASE_URL ? `${API_BASE_URL}${path}` : path;
+  // Always use relative paths since frontend and backend are on same origin
+  return path;
 }
-
-// Force rebuild to refresh CDN cache
 
