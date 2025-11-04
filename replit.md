@@ -8,6 +8,23 @@ This is a modern web application for a digital humanities dictionary, featuring 
 
 Preferred communication style: Simple, everyday language.
 
+## Deployment
+
+**Single-Origin Architecture on Render**
+- Both frontend (React SPA) and backend (Express API) are deployed to the same Render instance
+- Eliminates CORS complexity and CDN caching issues
+- Uses relative API paths for same-origin requests
+- Production URL: www.digwords.online (via custom domain pointing to Render)
+
+**Deployment Process**
+1. Code pushed to GitHub triggers automatic Render deployment
+2. Build command: `npm ci --include=dev && npm run build`
+   - Builds frontend to `dist/public`
+   - Builds backend to `dist/index.js`
+3. Start command: `NODE_ENV=production npm start`
+   - Express serves both static frontend and API routes
+4. Database: Neon PostgreSQL (configured via DATABASE_URL env var)
+
 ## System Architecture
 
 ### Frontend Architecture
